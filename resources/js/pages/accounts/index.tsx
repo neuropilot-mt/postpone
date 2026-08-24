@@ -70,15 +70,23 @@ export default function AccountsIndex({
                                     </div>
                                 </div>
                             </div>
-                            <Button
-                                className="min-h-11 w-full sm:w-auto"
-                                disabled={!platform.oauth_configured}
-                                onClick={() =>
-                                    router.visit(redirect.url(platform.value))
-                                }
-                            >
-                                Подключить через OAuth
-                            </Button>
+                            {platform.oauth_configured ? (
+                                <Button
+                                    asChild
+                                    className="min-h-11 w-full sm:w-auto"
+                                >
+                                    <a href={redirect.url(platform.value)}>
+                                        Подключить через OAuth
+                                    </a>
+                                </Button>
+                            ) : (
+                                <Button
+                                    className="min-h-11 w-full sm:w-auto"
+                                    disabled
+                                >
+                                    Подключить через OAuth
+                                </Button>
+                            )}
                         </div>
                     ))}
                 </div>
