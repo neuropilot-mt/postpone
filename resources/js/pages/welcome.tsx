@@ -1,5 +1,5 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { dashboard, login, register } from '@/routes';
+import { dashboard, login, privacy, register, terms } from '@/routes';
 
 export default function Welcome() {
     const { auth } = usePage().props;
@@ -78,6 +78,15 @@ export default function Welcome() {
                         />
                     </div>
                 </main>
+
+                <footer className="mx-auto flex w-full max-w-5xl flex-wrap gap-4 p-4 text-sm text-muted-foreground md:p-6">
+                    <Link href={privacy()} className="hover:text-foreground">
+                        Политика конфиденциальности
+                    </Link>
+                    <Link href={terms()} className="hover:text-foreground">
+                        Пользовательское соглашение
+                    </Link>
+                </footer>
             </div>
         </>
     );

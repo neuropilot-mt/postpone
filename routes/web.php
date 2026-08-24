@@ -8,6 +8,8 @@ use App\Http\Controllers\SocialOAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'welcome')->name('home');
+Route::inertia('privacy', 'legal/privacy')->name('privacy');
+Route::inertia('terms', 'legal/terms')->name('terms');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
