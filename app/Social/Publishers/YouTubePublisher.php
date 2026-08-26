@@ -39,7 +39,7 @@ class YouTubePublisher implements SocialPublisher
                     'categoryId' => '22',
                 ],
                 'status' => [
-                    'privacyStatus' => data_get($account->meta, 'privacy_status', 'private'),
+                    'privacyStatus' => data_get($account->meta, 'privacy_status', 'public'),
                     'selfDeclaredMadeForKids' => false,
                 ],
             ];
