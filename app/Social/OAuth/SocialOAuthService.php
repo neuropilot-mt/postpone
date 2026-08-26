@@ -178,15 +178,16 @@ class SocialOAuthService
             'redirect_uri' => $this->callbackUrl(Platform::TikTok),
         ])->throw()->json();
 
+        // username needs user.info.profile; stick to user.info.basic fields.
         $profile = Http::withToken((string) data_get($token, 'access_token'))
             ->get('https://open.tiktokapis.com/v2/user/info/', [
-                'fields' => 'open_id,display_name,username',
+                'fields' => 'open_id,display_name,avatar_url',
             ])
             ->throw()
             ->json('data.user');
 
         return $this->storeAccount($user, Platform::TikTok, [
-            'name' => (string) (data_get($profile, 'username') ?: data_get($profile, 'display_name') ?: 'TikTok'),
+            'name' => (string) (data_get($profile, 'display_name') ?: 'TikTok'),
             'external_id' => (string) data_get($profile, 'open_id'),
             'access_token' => (string) data_get($token, 'access_token'),
             'refresh_token' => data_get($token, 'refresh_token'),
